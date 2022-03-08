@@ -17,7 +17,7 @@ export default {
 
 <template>
   <router-link :to="to" class="link" :class="{ active: isActive }">
-    <i class="icon" :class="icon" />
+    <font-awesome-icon :icon="icon" class="icon"/>
     <transition name="fade">
       <span v-if="!collapsed">
         <slot />

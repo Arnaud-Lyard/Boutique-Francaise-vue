@@ -19,6 +19,11 @@ framework:
 
 when@test:
     framework:
+        http_cache: true     
         test: true
         session:
             storage_factory_id: session.storage.factory.mock_file
+
+when@prod:
+    framework:
+        http_cache: true            

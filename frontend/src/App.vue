@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div>
         <header>
             <Sidebar />
             <div :style="{ 'margin-left': sidebarWidth }">

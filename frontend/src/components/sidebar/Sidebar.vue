@@ -14,13 +14,15 @@
       </span>
       <span v-else>Boutique Française</span>
     </h1>
-    <SidebarLink to="/home" icon="fas fa-house">Accueil</SidebarLink>
-    <SidebarLink to="/contact">Contact</SidebarLink>
-    <SidebarLink to="/dashboard" icon="fas fa-columns">Dashboard</SidebarLink>
-    <SidebarLink to="/analytics" icon="fas fa-house">Analytics</SidebarLink>
-    <SidebarLink to="/friends" icon="fas fa-users">Friends</SidebarLink>
-    <SidebarLink to="/image" icon="fas fa-image">Images</SidebarLink>
-    
+    <SidebarLink to="/home" icon="house">Accueil</SidebarLink>
+    <SidebarLink to="/contact" icon="user">Contact</SidebarLink>
+    <SidebarLink to="/dashboard" icon="user">Dashboard</SidebarLink>
+    <SidebarLink to="/analytics" icon="user">Analytics</SidebarLink>
+    <SidebarLink to="/friends" icon="user">Friends</SidebarLink>
+    <SidebarLink to="/image" icon="user">Images</SidebarLink>
+    <SidebarLink to="/actualites" icon="user">Actualités</SidebarLink>
+<i class="fas fa-home"></i>
+
   </div>
 </template>
 
@@ -88,7 +90,6 @@ export default {
   top: 0;
   left: 0;
   bottom: 0;
-  padding: 0.5em;
   transition: 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -109,16 +110,16 @@ export default {
   transition: 0.2s linear;
 }
 .openmenu{
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   fill: white;
 }
 .openmenu:hover{
   fill: black;
 }
 .logo{
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 5px;
 }
 .navlink{

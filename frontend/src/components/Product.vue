@@ -1,33 +1,25 @@
 <template>
-    <header>
-
-      <div class="container">
-          <div class="container-item"></div>
-          <div class="container-item"></div>
-          <div class="container-item"></div>
-          <div class="container-item"></div>
-
-          <div class="container-item"></div>
-          <div class="container-item"></div>
-          <div class="container-item"></div>
-          <div class="container-item"></div>
-
-          <div class="container-item"></div>
-          <div class="container-item"></div>
-          <div class="container-item"></div>
-          <div class="container-item"></div>
-      </div>
-
-
-
-    </header>
+    <div class="container">
+      <article class="box">
+        Article 1
+      </article>
+      <article class="box">
+        Article 2
+      </article>
+      <article class="box">
+        Article 3
+      </article>
+      <article class="box">
+        Article 4
+      </article>
+  </div>
 </template>
 
 <script>
 // import UserService from "../services/user.service";
 
 export default {
-  name: "Products",
+  name: "Product",
   // data() {
   //   return {
   //     products: [],
@@ -56,19 +48,11 @@ export default {
 
 
 .container {
-    max-width: 1300px;
-    width: 80%;
-    height: auto;
-    margin: 30px auto;
-    border: 1px solid #333;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 300px);
-    justify-content: center;
-    grid-gap: 10px;
+  grid-area: main;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 20px;
 }
-.container-item {
-    width: 300px;
-    height: 200px;
-    background: #333;
-}
+
 </style>

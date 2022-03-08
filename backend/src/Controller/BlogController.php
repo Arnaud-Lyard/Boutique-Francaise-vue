@@ -23,7 +23,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/actualites", name="blog")
+     * @Route("/api/actualites", name="blog")
      */
 public function index(SerializerInterface $serializer): Response
     {
