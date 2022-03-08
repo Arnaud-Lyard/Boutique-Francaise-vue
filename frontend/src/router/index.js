@@ -1,25 +1,51 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createWebHistory, createRouter } from "vue-router";
+import Home from "../views/Home.vue";
+
+// lazy-loaded
+const contact = () => import("../components/Contact.vue")
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/home",
+    name: "home",
+    component: Home,
+    meta: {
+      title: "Accueil - Boutique",
+    },
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import('../views/Dashboard.vue')
+  },
+  {
+    path: "/contact",
+    name: "contact",
+    meta: {
+      title: "Contact",
+    },
+    // lazy-loaded
+    component: contact,
   }
-]
+];
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes
-})
+  history: createWebHistory(),
+  routes,
+});
 
-export default router
+export default router;
+
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/login', '/register', '/home', '/contact', '/dashboard'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('user');
+
+  // trying to access a restricted page + not logged in
+  // redirect to login page
+  if (authRequired && !loggedIn) {
+    next('/login');
+  } else {
+    next();
+  }
+});
