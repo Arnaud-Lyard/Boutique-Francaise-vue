@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "../views/Home.vue";
-import Blog from "../views/Blog.vue"
+import Blog from "../views/Blog.vue";
+import Shop from "../views/Shop.vue";
 
 // lazy-loaded
 const contact = () => import("../components/Contact.vue")
@@ -11,7 +12,7 @@ const routes = [
     name: "home",
     component: Home,
     meta: {
-      title: "Accueil - Boutique",
+      title: "Accueil - La boutique française",
     },
   },
   {
@@ -19,7 +20,15 @@ const routes = [
     name: "blog",
     component: Blog,
     meta: {
-      title: "Accueil - Boutique",
+      title: "Actualités - La boutique française",
+    },
+  },
+  {
+    path: "/boutique",
+    name: "Shop",
+    component: Shop,
+    meta: {
+      title: "Boutique - La boutique française",
     },
   },
   {
@@ -46,7 +55,7 @@ const router = createRouter({
 export default router;
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/register', '/home', '/contact', '/dashboard', '/actualites'];
+  const publicPages = ['/login', '/register', '/home', '/contact', '/dashboard', '/actualites', '/boutique'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 

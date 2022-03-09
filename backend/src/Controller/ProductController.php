@@ -12,6 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\SerializerInterface;
+
 
 class ProductController extends AbstractController
 {
@@ -21,27 +23,52 @@ class ProductController extends AbstractController
         $this->entityManager = $entityManager;
     }
     /**
-     * @Route("/nos-produits", name="products")
+     * @Route("/api/produits", name="products")
      */
-    public function index(Request $request): Response
+    public function index(SerializerInterface $serializer, Request $request): Response
     {
 
         $products = $this->entityManager->getRepository(Product::class)->findAll();
 
-        $search = new Search();
-        $form = $this->createForm(SearchType::class, $search);
+        // $search = new Search();
+        // $form = $this->createForm(SearchType::class, $search);
 
-        $form->handleRequest($request);
+        // $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
-            // dd($search);
-        }
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
+        // }
     
-        return $this->render('product/index.html.twig', [
-            'products' => $products,
-            'form' => $form->createView()
-        ]);
+        // return $this->render('product/index.html.twig', [
+        //     'products' => $products,
+        //     'form' => $form->createView()
+        // ]);
+            // dd($products);
+
+        foreach( $products as $product){
+        
+            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+            $img = $product->getIllustration();
+            $link = $baseurl."/uploads/products/".$img;
+
+            $product->setIllustration($link);
+
+        }
+
+
+        $data = $serializer->serialize(
+            $products,
+            'json',
+            ['groups' => 'produit']
+        );
+
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
+
+
+
+        return $response;
+
     }
 
     /**

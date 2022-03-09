@@ -41,5 +41,11 @@ export default {
   font-weight: bold;
   color: #2c3e50;
 }
-
+html {
+  font-size: 62.5%; /* équivalence "10px" sur l'élément racine */
+  overflow: hidden;
+}
+body {
+  font-size: 1.4em; /* taille de base pour tous les éléments équivalent 14px */
+}
 </style>

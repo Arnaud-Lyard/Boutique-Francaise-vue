@@ -8,6 +8,7 @@ Use App\Repository\CategoryArticleRepository;
 use App\Entity\CategoryArticle;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -25,7 +26,7 @@ class BlogController extends AbstractController
     /**
      * @Route("/api/actualites", name="blog")
      */
-public function index(SerializerInterface $serializer): Response
+public function index(SerializerInterface $serializer, Request $request): Response
     {
         $articles = $this->repoArticle->findAll();
         // $categories = $this->repoCategory->findAll();
@@ -43,6 +44,22 @@ public function index(SerializerInterface $serializer): Response
         // );
 
         // $data =  $this->get('serializer')->serialize($author, 'json');
+
+
+        // dd($articles);
+        // $img = $articles[0]->getImage();
+        // dd($img);
+
+        foreach( $articles as $article){
+            
+            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+            $img = $article->getImage();
+            $link = $baseurl."/uploads/articles/".$img;
+
+            $article->setImage($link);
+
+        }
+
 
         $data = $serializer->serialize(
             $articles,

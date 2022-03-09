@@ -6,6 +6,10 @@ class UserService {
   getAllArticles() {
     return axios.get(API_URL + 'api/actualites');
   }
+
+  getAllProducts() {
+    return axios.get(API_URL + 'api/produits');
+  }
                                          
 //   async getUserOneProduct(id) {  
 //      return await axios.get(API_URL + 'getOneProduct/'+id, { headers: authHeader()});

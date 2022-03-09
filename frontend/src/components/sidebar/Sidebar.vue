@@ -19,8 +19,8 @@
     <SidebarLink to="/dashboard" icon="user">Dashboard</SidebarLink>
     <SidebarLink to="/analytics" icon="user">Analytics</SidebarLink>
     <SidebarLink to="/friends" icon="user">Friends</SidebarLink>
-    <SidebarLink to="/image" icon="user">Images</SidebarLink>
-    <SidebarLink to="/actualites" icon="user">Actualités</SidebarLink>
+    <SidebarLink to="/boutique" icon="shop">Boutique</SidebarLink>
+    <SidebarLink to="/actualites" icon="book-open">Actualités</SidebarLink>
 <i class="fas fa-home"></i>
 
   </div>
