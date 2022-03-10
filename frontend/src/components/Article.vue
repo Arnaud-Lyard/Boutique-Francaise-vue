@@ -95,9 +95,9 @@ export default {
   padding: 25px;
 }
 .image{
-  width: 100%;
-  height: auto;
-  max-width: 300px;
+  width: 300px;
+  height:200px;
+  object-fit: cover;
   border-radius: 15px;
 }
 .title{
@@ -126,6 +126,12 @@ export default {
   .title {
     font-size: 1.5rem;
   }
+  .image{
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  border-radius: 15px;
+}
 
 }
 </style>
