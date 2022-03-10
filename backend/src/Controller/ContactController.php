@@ -3,37 +3,45 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use App\Entity\Contact;
 use App\Classe\Mail;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class ContactController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager){
+        $this->entityManager = $entityManager;
+    }
     /**
-     * @Route("/nous-contacter", name="contact")
+     * @Route("/api/nous-contacter", name="contact")
      */
-    public function index(Request $request): Response
+    public function index(SerializerInterface $serializer, Request $request): Response
     {
-        $form = $this->createForm(ContactType::class);
-        $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $this->addFlash('notice', 'Merci de nous avoir contacté. Notre équipe va vous répondre dans les meilleurs délais.');
+        $data = $request->getContent();
+        $contact = $serializer->deserialize($data, Contact::class, 'json');
 
-            $prenom = $form->get('prenom')->getData();
-            $nom = $form->get('nom')->getData();
-            $email = $form->get('email')->getData();
-            $text = $form->get('content')->getData();
+        $nom = $contact->getLastname();
+        $prenom = $contact->getFirstname();
+        $email = $contact->getEmail();
+        $message = $contact->getMessage();
 
-            $mail = new Mail();
-            $content = "Vous avez reçu un message de la part de ".$prenom." ".$nom." <br/> Son adresse email : ".$email." : <br/><br/>".$text."";
-            $mail->send('contact@prochainweb.com', 'La Boutique Française', 'Vous avez reçu un nouveau message de La Boutique Française', $content );
-        }
-        return $this->render('contact/index.html.twig', [
-            'form' => $form->createView()
-        ]);
+        $mail = new Mail();
+        $content = "Vous avez reçu un message de la part de ".$prenom." ".$nom." <br/> Son adresse email : ".$email." : <br/><br/>".$message."";
+        $mail->send('contact@prochainweb.com', 'La Boutique Française', 'Vous avez reçu un nouveau message de La Boutique Française', $content );
+        
+        
+        $this->entityManager->persist($contact);
+        $this->entityManager->flush();
+        
+        return new Response('', Response::HTTP_CREATED);
+
     }
 }

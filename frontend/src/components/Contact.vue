@@ -7,14 +7,14 @@
                     <div className="formContent">
 
                     <h2>Contact</h2>
-                    <form @onSubmit="sendMail">
+                    <form @submit="sendMail">
                         <div class="inputBox">
                             <input v-model="lastname" type="text" id="lastname" autoComplete="off" required />
                             <label for="lastname">Votre nom :</label>
                         </div>
 
                         <div class="inputBox">
-                            <input v-model="forname" type="text" id="forname" autoComplete="off" required />
+                            <input v-model="firstname" type="text" id="firstname" autoComplete="off" required />
                             <label for="forname">Votre prénom :</label>
                         </div>
 
@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="inputBox">
-                            <input  v-model="message" col="5" row="5" type="textarea" id="message" autoComplete="off" required />
+                            <input  v-model="message" type="text" id="message" autoComplete="off" required />
                             <label for="message">Votre message :</label>
                         </div>
                         <button class="btn">Envoyer votre demande</button>
@@ -40,17 +40,30 @@ import axios from "axios";
 
 export default {
   name: "contact",
-  methods: {
-    sendMail() {
-      axios.post("http://localhost:3000/services",{
-        name: this.name,
-        lastname: this.lastname,
-        email: this.email,
-        objet: this.objet,
-        demande: this.demande,
-      });
+  data() {
 
-      location.reload();
+    return{
+      lastname: "",
+      firstname: "",
+      email: "",
+      message: ""
+      
+    }
+  },
+  methods: {
+    async sendMail() {
+      await axios.post("http://localhost:8000/api/nous-contacter",{
+        lastname: this.lastname,
+        firstname: this.firstname,
+        email: this.email,
+        message: this.message,
+        // lastname: "this.lastname",
+        // firstname: "this.firstname",
+        // email: "this.email",
+        // message: "this.message",
+
+      });
+         console.log(lastname);
     },
   },
 };

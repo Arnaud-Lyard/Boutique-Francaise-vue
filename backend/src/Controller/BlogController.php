@@ -29,26 +29,6 @@ class BlogController extends AbstractController
 public function index(SerializerInterface $serializer, Request $request): Response
     {
         $articles = $this->repoArticle->findAll();
-        // $categories = $this->repoCategory->findAll();
-        // dd($categories);
-        //     $this->render("blog/index.html.twig", [
-        //     'articles' => $articles,
-        //     'categories' => $categories,
-        // ]);
-       
-
-        // $serializer->serialize(
-        //     $articles,
-        //     'json',
-        //     ['groups' => 'article']
-        // );
-
-        // $data =  $this->get('serializer')->serialize($author, 'json');
-
-
-        // dd($articles);
-        // $img = $articles[0]->getImage();
-        // dd($img);
 
         foreach( $articles as $article){
             
