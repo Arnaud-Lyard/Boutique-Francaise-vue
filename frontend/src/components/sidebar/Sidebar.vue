@@ -5,7 +5,7 @@
       class="collapse-icon"
       :class="{ 'rotate-180': collapsed }"
       @click="toggleSidebar"
-    ><svg class="openmenu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.427 3.021h-7.427v-3.021l-6 5.39 6 5.61v-3h7.427c3.071 0 5.561 2.356 5.561 5.427 0 3.071-2.489 5.573-5.561 5.573h-7.427v5h7.427c5.84 0 10.573-4.734 10.573-10.573s-4.733-10.406-10.573-10.406z"/></svg>
+    ><font-awesome-icon :icon="['fas', 'bars']" />
     </span>
 
     <h1>
@@ -21,7 +21,6 @@
     <SidebarLink to="/friends" icon="user">Friends</SidebarLink>
     <SidebarLink to="/boutique" icon="shop">Boutique</SidebarLink>
     <SidebarLink to="/actualites" icon="book-open">Actualités</SidebarLink>
-<i class="fas fa-home"></i>
 
   </div>
 </template>
@@ -80,49 +79,7 @@ export default {
 }
 </style>
 
-<style scoped>
-.sidebar {
-  color: white;
-  background-color: var(--sidebar-bg-color);
-  float: left;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  transition: 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-.sidebar h1 {
-  height: 2.5em;
-  margin-top: 100px;
-}
-.collapse-icon {
-  position: relative;
-  top: 0;
-  color: rgba(255, 255, 255, 0.7);
-  transition: 0.2s linear;
-  cursor: pointer;
-}
-.rotate-180 {
-  transform: rotate(180deg);
-  transition: 0.2s linear;
-}
-.openmenu{
-  height: 30px;
-  width: 30px;
-  fill: white;
-}
-.openmenu:hover{
-  fill: black;
-}
-.logo{
-  width: 30px;
-  height: 30px;
-  border-radius: 5px;
-}
-.navlink{
-  display: flex;
-}
+<style scoped src="./Sidebar.css">
+
+
 </style>

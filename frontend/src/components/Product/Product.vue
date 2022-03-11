@@ -4,15 +4,17 @@
     <div class="product-container">
         <article class="product-box" v-for="product in products" :key="product.id">
             <div>
-                <img class="product-image" v-bind:src="product.image" /> 
+                <img class="product-image" :src="product.illustration" :alt="product.name"/> 
             </div>
            <div class="product-title">{{ product.name }}</div>
+           <div class="product-subtitle">{{ product.subtitle }}</div>
+           <div class="product-price">{{product.price / 100}} €</div>
         </article>
     </div>
 </template>
 
 <script>
-import UserService from "../services/user.service";
+import UserService from "../../services/user.service";
 
 export default {
   name: "Product",
@@ -40,16 +42,8 @@ export default {
 </script>
 
 
-<style scoped>
+<style scoped src="./Product.css">
 
 
-
-.product-container {
-  grid-area: main;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: minmax(100px, auto);
-  grid-gap: 20px;
-}
 
 </style>

@@ -54,6 +54,7 @@ class Product
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"produit"})
      */
     private $price;
 

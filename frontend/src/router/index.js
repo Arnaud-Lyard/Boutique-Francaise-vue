@@ -4,7 +4,7 @@ import Blog from "../views/Blog.vue";
 import Shop from "../views/Shop.vue";
 
 // lazy-loaded
-const contact = () => import("../components/Contact.vue")
+const contact = () => import("../components/Contact/Contact.vue")
 
 const routes = [
   {

@@ -11,8 +11,8 @@
 
 <script>
 
-import Sidebar from '@/components/sidebar/Sidebar'
-import { sidebarWidth } from '@/components/sidebar/state'
+import Sidebar from '@/components/Sidebar/Sidebar'
+import { sidebarWidth } from '@/components/Sidebar/state'
 export default {
   components: { Sidebar },
   setup() {
@@ -43,7 +43,6 @@ export default {
 }
 html {
   font-size: 62.5%; /* équivalence "10px" sur l'élément racine */
-  overflow: hidden;
 }
 body {
   font-size: 1.4em; /* taille de base pour tous les éléments équivalent 14px */

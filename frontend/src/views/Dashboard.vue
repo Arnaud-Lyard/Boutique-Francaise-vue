@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import { collapsed, toggleSidebar } from '@/components/sidebar/state'
+import { collapsed, toggleSidebar } from '@/components/Sidebar/state'
 export default {
   setup() {
     return { collapsed, toggleSidebar }
