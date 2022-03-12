@@ -1,6 +1,6 @@
 <template>
     <div class="BlogBox">
-          <div class="formContent">
+          <div class="form-container">
           <h1>Actualités</h1>
             <article class="box" v-for="article in articles" :key="article.id">
                 <div>

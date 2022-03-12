@@ -1,7 +1,8 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "../views/Home.vue";
-import Blog from "../views/Blog.vue";
-import Shop from "../views/Shop.vue";
+import HomePage from "../views/HomePage.vue";
+import BlogPage from "../views/BlogPage.vue";
+import ShopPage from "../views/ShopPage.vue";
+import ProductPage from "../views/ProductPage"
 
 // lazy-loaded
 const contact = () => import("../components/Contact/Contact.vue")
@@ -9,32 +10,36 @@ const contact = () => import("../components/Contact/Contact.vue")
 const routes = [
   {
     path: "/home",
-    name: "home",
-    component: Home,
+    name: "HomePage",
+    component: HomePage,
     meta: {
       title: "Accueil - La boutique française",
     },
   },
   {
     path: "/actualites",
-    name: "blog",
-    component: Blog,
+    name: "BlogPage",
+    component: BlogPage,
     meta: {
       title: "Actualités - La boutique française",
     },
   },
   {
     path: "/boutique",
-    name: "Shop",
-    component: Shop,
+    name: "ShopPage",
+    component: ShopPage,
     meta: {
       title: "Boutique - La boutique française",
     },
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: () => import('../views/Dashboard.vue')
+    path: "/produit/:id",
+    name: "ProductPage",
+    component: ProductPage,
+    meta: {
+      title: "Détails du produit - La boutique française",
+    },
+    props: true,
   },
   {
     path: "/contact",
@@ -55,7 +60,7 @@ const router = createRouter({
 export default router;
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/register', '/home', '/contact', '/dashboard', '/actualites', '/boutique'];
+  const publicPages = ['/login', '/register', '/home', '/contact', '/dashboard', '/actualites', '/boutique', '/produit/:id'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 
