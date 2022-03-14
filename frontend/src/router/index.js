@@ -3,6 +3,7 @@ import HomePage from "../views/HomePage.vue";
 import BlogPage from "../views/BlogPage.vue";
 import ShopPage from "../views/ShopPage.vue";
 import ProductDetail from "../components/ProductDetail/ProductDetail";
+import ContactPage from "../views/ContactPage";
 
 // lazy-loaded
 const contact = () => import("../components/Contact/Contact.vue")
@@ -44,9 +45,9 @@ const routes = [
 
   {
     path: "/contact",
-    name: "contact",
+    name: "ContactPage",
     meta: {
-      title: "Contact",
+      title: "Contact  - La boutique française",
     },
     // lazy-loaded
     component: contact,
@@ -65,7 +66,7 @@ const router = createRouter({
 
   const loggedIn = localStorage.getItem('user');
 
-  const privatePages = ['/contact'];
+  const privatePages = [''];
   const authRequired = privatePages.includes(to.path);
   
   // trying to access a restricted page + not logged in

@@ -8,7 +8,7 @@
 // @ is an alias to /src
 import Article from '@/components/Article/Article.vue'
 export default {
-  name: 'Blog',
+  name: 'BlogPage',
   components: {
     Article
   }

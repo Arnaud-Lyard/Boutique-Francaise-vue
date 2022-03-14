@@ -15,12 +15,12 @@
       <span v-else>Boutique Française</span>
     </h1>
     <SidebarLink to="/home" icon="house">Accueil</SidebarLink>
-    <SidebarLink to="/contact" icon="user">Contact</SidebarLink>
+    <SidebarLink to="/contact" icon="pen">Contact</SidebarLink>
     <SidebarLink to="/dashboard" icon="user">Dashboard</SidebarLink>
     <SidebarLink to="/analytics" icon="user">Analytics</SidebarLink>
-    <SidebarLink to="/friends" icon="user">Friends</SidebarLink>
     <SidebarLink to="/boutique" icon="shop">Boutique</SidebarLink>
     <SidebarLink to="/actualites" icon="book-open">Actualités</SidebarLink>
+    <SidebarLink to="/friends" icon="user">Connexion</SidebarLink>
 
   </div>
 </template>

@@ -1,12 +1,10 @@
 <template>
-    <div>
-        <header>
+        <section>
             <Sidebar />
             <div :style="{ 'margin-left': sidebarWidth }">
                 <router-view />
             </div>
-        </header>
-    </div>
+        </section>
 </template>
 
 <script>
