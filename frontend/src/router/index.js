@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import HomePage from "../views/HomePage.vue";
 import BlogPage from "../views/BlogPage.vue";
 import ShopPage from "../views/ShopPage.vue";
-import ProductPage from "../views/ProductPage"
+import ProductDetail from "../components/ProductDetail/ProductDetail";
 
 // lazy-loaded
 const contact = () => import("../components/Contact/Contact.vue")
@@ -34,13 +34,14 @@ const routes = [
   },
   {
     path: "/produit/:id",
-    name: "ProductPage",
-    component: ProductPage,
+    name: "ProductDetail",
+    component: ProductDetail,
     meta: {
       title: "Détails du produit - La boutique française",
     },
     props: true,
   },
+
   {
     path: "/contact",
     name: "contact",
@@ -57,13 +58,16 @@ const router = createRouter({
   routes,
 });
 
-export default router;
 
-router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/register', '/home', '/contact', '/dashboard', '/actualites', '/boutique', '/produit/:id'];
-  const authRequired = !publicPages.includes(to.path);
+  export default router;
+
+  router.beforeEach((to, from, next) => {
+
   const loggedIn = localStorage.getItem('user');
 
+  const privatePages = ['/contact'];
+  const authRequired = privatePages.includes(to.path);
+  
   // trying to access a restricted page + not logged in
   // redirect to login page
   if (authRequired && !loggedIn) {
@@ -72,3 +76,4 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+

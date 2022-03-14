@@ -58,9 +58,9 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/produit/{slug}", name="product")
+     * @Route("/api/produit/{slug}", name="product")
      */
-    public function show($slug): Response
+    public function show(SerializerInterface $serializer, Request $request, $slug): Response
     {
         $product = $this->entityManager->getRepository(Product::class)->findOneBy(['slug' => $slug]);
         $products = $this->entityManager->getRepository(Product::class)->findByIsBest(1);
@@ -72,15 +72,22 @@ class ProductController extends AbstractController
         // Récupérer les entités Comment grâce à l'ID produit
         $comments = $this->entityManager->getRepository(Comment::class)->findByProduct($productId);
 
-        if(!$product) {
-            return $this->redirectToRoute('products');
-        }
+        $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+        $img = $product->getIllustration();
+        $link = $baseurl."/uploads/products/".$img;
 
-        return $this->render('product/show.html.twig', [
-            'product' => $product,
-            'products' => $products,
-            'comments' => $comments,
-            'users' => $users
-        ]);
+        $product->setIllustration($link);
+
+
+        $data = $serializer->serialize(
+            $product,
+            'json',
+            ['groups' => 'produit']
+        );
+
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }

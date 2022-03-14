@@ -10,6 +10,10 @@ class UserService {
   getAllProducts() {
     return axios.get(API_URL + 'api/produits');
   }
+
+  getProductBySlug(slug) {
+    return axios.get(API_URL + 'api/produit/' + slug);
+  }
                                          
 //   async getUserOneProduct(id) {  
 //      return await axios.get(API_URL + 'getOneProduct/'+id, { headers: authHeader()});
