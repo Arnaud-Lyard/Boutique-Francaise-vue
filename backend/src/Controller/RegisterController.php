@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 
 class RegisterController extends AbstractController
 {
@@ -20,44 +22,32 @@ class RegisterController extends AbstractController
         $this->entityManager = $entityManager;
     }
     /**
-     * @Route("/inscription", name="register")
+     * @Route("/api/inscription", name="register", methods={"POST","HEAD"})
      */
-    public function index(Request $request, UserPasswordEncoderInterface $encoder)
+    public function index(SerializerInterface $serializer, Request $request, UserPasswordEncoderInterface $encoder)
     {   
-        $notification = null;
 
-        $user = new User();
-        $form = $this->createForm(RegisterType::class, $user);
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();
-
-            $search_email = $this->entityManager->getRepository(User::class)->findOneByEmail($user->getEmail());
-
+        $data = $request->getContent();
+        $user = $serializer->deserialize($data, User::class, 'json');
+        
+        $search_email = $this->entityManager->getRepository(User::class)->findOneByEmail($user->getEmail());
+        
             if(!$search_email) {
                 $password = $encoder->encodePassword($user, $user->getPassword());
     
                 $user->setPassword($password);
-    
+
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();
 
-                $mail = new Mail();
-                $content = "Bonjour ".$user->getFirstname()."<br/>Bienvenue sur la première boutique dédiée au made in France.<br/><br/>";
-                $mail->send($user->getEmail(), $user->getFirstname(), 'Bienvenue sur La Boutique Française', $content);
+                return new Response('Success : Email have been created', Response::HTTP_CREATED);
 
-                $notification = "Votre inscription s'est correctement déroulée. Vous pouvez dès à présent vous connecter à votre compte.";
+                // $mail = new Mail();
+                // $content = "Bonjour ".$user->getFirstname()."<br/>Bienvenue sur la première boutique dédiée au made in France.<br/><br/>";
+                // $mail->send($user->getEmail(), $user->getFirstname(), 'Bienvenue sur La Boutique Française', $content);
     
             } else {
-                $notification = "L'email que vous avez renseigné existe déjà.";
+                return new Response('Error : Email is already used', Response::HTTP_BAD_REQUEST);
             }
-        }
-
-        return $this->render('register/index.html.twig',[
-            'form' => $form->createView(),
-            'notification' => $notification
-        ]);
     }
 }

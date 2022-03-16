@@ -20,7 +20,13 @@
     <SidebarLink to="/analytics" icon="user">Analytics</SidebarLink>
     <SidebarLink to="/boutique" icon="shop">Boutique</SidebarLink>
     <SidebarLink to="/actualites" icon="book-open">Actualités</SidebarLink>
-    <SidebarLink to="/friends" icon="user">Connexion</SidebarLink>
+    <div v-if="!currentUser">
+        <SidebarLink to="/connexion" icon="arrow-right-to-bracket">Connexion</SidebarLink>
+        <SidebarLink to="/inscription" icon="user">Inscription</SidebarLink>
+    </div>
+    <div v-if="currentUser">
+        <SidebarLink to="/deconnexion" @click.prevent="logOut" icon="arrow-right-from-bracket">Déconnexion</SidebarLink>
+    </div>
 
   </div>
 </template>
@@ -60,7 +66,7 @@ export default {
   methods: {
     logOut() {
       this.$store.dispatch('auth/logout');
-      this.$router.push('/login');
+      this.$router.push('/connexion');
     }
   },
   setup() {

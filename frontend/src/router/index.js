@@ -4,6 +4,8 @@ import BlogPage from "../views/BlogPage.vue";
 import ShopPage from "../views/ShopPage.vue";
 import ProductDetail from "../components/ProductDetail/ProductDetail";
 import ContactPage from "../views/ContactPage";
+import LoginPage from "../views/LoginPage";
+import RegisterPage from "../views/RegisterPage"
 
 // lazy-loaded
 const contact = () => import("../components/Contact/Contact.vue")
@@ -34,6 +36,22 @@ const routes = [
     },
   },
   {
+    path: "/connexion",
+    name: "LoginPage",
+    component: LoginPage,
+    meta: {
+      title: "Connexion - La boutique française",
+    },
+  },
+  {
+    path: "/inscription",
+    name: "RegisterPage",
+    component: RegisterPage,
+    meta: {
+      title: "Inscription - La boutique française",
+    },
+  },
+  {
     path: "/produit/:id",
     name: "ProductDetail",
     component: ProductDetail,
@@ -46,6 +64,7 @@ const routes = [
   {
     path: "/contact",
     name: "ContactPage",
+    component: ContactPage,
     meta: {
       title: "Contact  - La boutique française",
     },

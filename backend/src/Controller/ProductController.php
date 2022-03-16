@@ -23,7 +23,7 @@ class ProductController extends AbstractController
         $this->entityManager = $entityManager;
     }
     /**
-     * @Route("/api/produits", name="products")
+     * @Route("/api/produits", name="products", methods={"GET","HEAD"})
      */
     public function index(SerializerInterface $serializer, Request $request): Response
     {
@@ -58,7 +58,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/api/produit/{slug}", name="product")
+     * @Route("/api/produit/{slug}", name="product", methods={"GET","HEAD"})
      */
     public function show(SerializerInterface $serializer, Request $request, $slug): Response
     {

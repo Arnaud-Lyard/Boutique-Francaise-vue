@@ -20,7 +20,7 @@ class ContactController extends AbstractController
         $this->entityManager = $entityManager;
     }
     /**
-     * @Route("/api/nous-contacter", name="contact")
+     * @Route("/api/nous-contacter", name="contact", methods={"POST","HEAD"})
      */
     public function index(SerializerInterface $serializer, Request $request): Response
     {

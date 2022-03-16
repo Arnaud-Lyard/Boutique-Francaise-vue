@@ -2,35 +2,48 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+Use App\Repository\UserRepository;
+
+
+
+
 
 class SecurityController extends AbstractController
 {
-    /**
-     * @Route("/connexion", name="app_login")
-     */
-    public function login(AuthenticationUtils $authenticationUtils): Response
-    {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('account');
-        }
+    private $entityManager;
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+    public function __construct(EntityManagerInterface $entityManager){
+        $this->entityManager = $entityManager;
     }
-
     /**
-     * @Route("/deconnexion", name="app_logout")
+     * @Route("/api/connexion", name="app_login", methods={"POST","HEAD"})
      */
-    public function logout(): void
+    public function login(SerializerInterface $serializer, Request $request, UserRepository $userRepository, UserPasswordEncoderInterface $encoder)
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+
+        $data = $request->getContent();
+        $user = $serializer->deserialize($data, User::class, 'json');
+
+
+        $search_user_with_email = $this->entityManager->getRepository(User::class)->findOneByEmail($user->getEmail());
+
+
+        if (!$search_user_with_email || !$encoder->isPasswordValid($search_user_with_email, $user->getPassword())) {
+
+            return new Response('Error : Email or password incorrect', Response::HTTP_UNAUTHORIZED);
+
+        } else {
+
+            return new Response('Success : You are connected', Response::HTTP_OK);
+
+        }
     }
 }
