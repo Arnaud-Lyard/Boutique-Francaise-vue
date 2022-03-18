@@ -27,7 +27,8 @@
     <div v-if="currentUser">
         <SidebarLink to="/deconnexion" @click.prevent="logOut" icon="arrow-right-from-bracket">Déconnexion</SidebarLink>
     </div>
-
+        <SidebarLink to="/cart" icon="shopping-cart">Panier</SidebarLink>
+        <span>{{cartQuantity}}</span>
   </div>
 </template>
 
@@ -35,6 +36,8 @@
 <script>
 import SidebarLink from './SidebarLink'
 import { collapsed, toggleSidebar, sidebarWidth } from './state'
+import {mapGetters} from "vuex"
+
 export default {
   props: {},
   components: { SidebarLink },
@@ -47,6 +50,9 @@ export default {
     },
   },
   computed: {
+    ...mapGetters([
+      'cartQuantity'
+    ]),
     currentUser() {
       return this.$store.state.auth.user;
     },
@@ -62,6 +68,9 @@ export default {
       }
       return false;
     }
+  },
+  created() {
+    this.$store.dispatch("getCartItems");
   },
   methods: {
     logOut() {

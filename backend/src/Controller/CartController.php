@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
-use App\Classe\Cart;
-use App\Entity\Product;
+use App\Entity\Cart;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
+
+
 
 class CartController extends AbstractController
 {
@@ -18,53 +21,63 @@ class CartController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
+    
     /**
-     * @Route("/mon-panier", name="cart")
+     * @Route("api/cart", name="cart")
      */
-    public function index(Cart $cart): Response
+    public function index(SerializerInterface $serializer, Request $request): Response
     {
-        return $this->render('cart/index.html.twig', [
-            'cart' => $cart->getFull()
-        ]);
-    }
+    // Get data from Vue in JSON
+    $data = json_decode($request->getContent(), true);
+    // $productdetails = $serializer->deserialize($data, OrderDetails::class, 'json');
+    // dd($data);
 
-    /**
-     * @Route("/cart/add/{id}", name="add_to_cart")
-     */
-    public function add(Cart $cart, $id): Response
-    {
-        $cart->add($id);
+    // Get data from JSON
+    // $productid = $data['id'];
+    $productname = $data['name'];
+    $price = $data['price'];
+    $quantity = 1;
 
-        return $this->redirectToRoute('cart');
-    }
+    // New instance Cart
+    $cart = new Cart();
 
-    /**
-     * @Route("/cart/remove", name="remove_my_cart")
-     */
-    public function remove(Cart $cart): Response
-    {
-        $cart->remove();
+    // Set data in cart
+    $cart->setProduct($productname);
+    $cart->setQuantity($quantity);
+    $cart->setPrice($price);
+    $cart->setTotal($price * $quantity);
 
-        return $this->redirectToRoute('products');
-    }
+    // $this->entityManager->persist($cart);
+    $this->entityManager->persist($cart);
+    $this->entityManager->flush();
 
-    /**
-     * @Route("/cart/delete/{id}", name="delete_to_cart")
-     */
-    public function delete(Cart $cart, $id): Response
-    {
-        $cart->delete($id);
+    
 
-        return $this->redirectToRoute('cart');
-    }
+    $data = $serializer->serialize(
+        $cart,
+        'json',
+        ['groups' => 'cart']
+    );
 
-    /**
-     * @Route("/cart/decrease/{id}", name="decrease_to_cart")
-     */
-    public function decrease(Cart $cart, $id): Response
-    {
-        $cart->decrease($id);
+    $response = new Response($data);
+    $response->headers->set('Content-Type', 'application/json');
 
-        return $this->redirectToRoute('cart');
+
+
+    return $response;
+
+
+    // $productdetails = $this->entityManager->getRepository(OrderDetails::class)->findOneBy(array(), array('id' => 'DESC'));
+    // $productdetails->setQuantity($quantity);
+
+    
+    
+    // $product_object = $this->entityManager->getRepository(Product::class)->findOneById($id);
+    
+    // $productid = $productdetails->getId();
+    // $productname = $productdetails->getProduct();
+    // $price = $productdetails->getPrice();
+
+
     }
 }

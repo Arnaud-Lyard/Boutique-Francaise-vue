@@ -2,13 +2,8 @@
     <div class="product-box">
           <h1>Boutique</h1>
         <div class="product-container">
-            <article class="product-card" v-for="product in products" :key="product.id">
-                <router-link :to="{ name: 'ProductDetail', params: { id: product.slug }}">
-                  <img class="product-image" :src="product.illustration" :alt="product.name"/>
-                </router-link>
-              <div class="product-title">{{ product.name }}</div>
-              <div class="product-subtitle">{{ product.subtitle }}</div>
-              <div class="product-price">{{product.price / 100}} €</div>
+            <article class="product-card" v-for="productItem in productItems" :key="productItem.id">
+              <ProductDetail :productItem="productItem"/>
             </article>
             <div>
               
@@ -18,31 +13,57 @@
 </template>
 
 <script>
-import UserService from "../../services/user.service";
+// import UserService from "../../services/user.service";
+import { mapGetters } from 'vuex';
+import ProductDetail from '../ProductDetail/ProductDetail'
 
 export default {
   name: "Product",
-  data() {
-    return {
-      products: [],
-    };
+  components: {
+    ProductDetail:ProductDetail
   },
-  mounted() {
-    UserService.getAllProducts().then(
-      (response) => {
-        this.products = response.data;
-      },
-      (error) => {
-        this.products =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
+  computed: {
+    ...mapGetters([
+      'productItems'
+    ])
   },
+  created() {
+    this.$store.dispatch('getProductItems');
+  }
 };
+
+
+// export default {
+//   name: "Product",
+//   data() {
+//     return {
+//       products: [],
+//     };
+//   },
+//   computed: {
+//     ...mapGetters([
+//       'productItems'
+//     ])
+//   },
+//   created() {
+//     this.$store.dispatch('getProductItems');
+//   },
+  // mounted() {
+  //   UserService.getAllProducts().then(
+  //     (response) => {
+  //       this.products = response.data;
+  //     },
+  //     (error) => {
+  //       this.products =
+  //         (error.response &&
+  //           error.response.data &&
+  //           error.response.data.message) ||
+  //         error.message ||
+  //         error.toString();
+  //     }
+  //   );
+  // },
+// };
 </script>
 
 

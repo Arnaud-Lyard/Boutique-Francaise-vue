@@ -6,11 +6,16 @@ import ProductDetail from "../components/ProductDetail/ProductDetail";
 import ContactPage from "../views/ContactPage";
 import LoginPage from "../views/LoginPage";
 import RegisterPage from "../views/RegisterPage"
+import Cart from "../components/Cart/Cart"
 
 // lazy-loaded
 const contact = () => import("../components/Contact/Contact.vue")
 
 const routes = [
+  {
+    path: '/cart',
+    component: Cart,
+  },
   {
     path: "/home",
     name: "HomePage",

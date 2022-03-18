@@ -1,9 +1,9 @@
 .product-box {
   background-image: url("../../assets/bg-texture.png");
-  background-repeat: repeat;
+  /* background-repeat: repeat;
   -webkit-box-shadow: inset 0px 143px 108px -18px rgba(0, 0, 0, 0.39);
   -moz-box-shadow: inset 0px 143px 108px -18px rgba(0, 0, 0, 0.39);
-  box-shadow: inset 0px 143px 108px -18px rgba(0, 0, 0, 0.39);
+  box-shadow: inset 0px 143px 108px -18px rgba(0, 0, 0, 0.39); */
 }
 
 .product-container {

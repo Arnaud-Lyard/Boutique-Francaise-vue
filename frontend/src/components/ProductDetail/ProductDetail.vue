@@ -1,12 +1,13 @@
 <template>
     <div class="product-box">
         <div class="product-container">
-          <h1>{{product.name}}</h1>
+          <h1>{{productItem.name}}</h1>
             <article class="product-card">
-                  <img class="product-image" :src="product.illustration" :alt="product.name"/>
-              <div class="product-subtitle">{{ product.subtitle }}</div>
-              <div class="product-price">{{product.price / 100}} €</div>
-              <div class="product-description">{{product.description}}</div>
+                  <img class="product-image" :src="productItem.illustration" :alt="productItem.name"/>
+              <div class="product-subtitle">{{ productItem.subtitle }}</div>
+              <div class="product-price">{{productItem.price / 100}} €</div>
+              <div class="product-description">{{productItem.description}}</div>
+              <a class="add-cart" @click="addCartItem(productItem)">Ajouter au panier</a>
             </article>
             <div>
             </div>
@@ -16,42 +17,53 @@
 
 <script>
 
-import UserService from "../../services/user.service";
+// import UserService from "../../services/user.service";
+import {mapActions} from 'vuex'
+
+
 export default {
+  name: "ProductDetail",
+  props: ["productItem"],
+  methods: {
+    ...mapActions(["addCartItem"]),
+  },
+};
 
-    name:"ProductDetail",
-    props: ["id"],
-    data() {
+// export default {
 
-    return {
-      designation: "",
-      price: "",
-      description: "",
-      product: [],
+//     name:"ProductDetail",
+//     props: ["id"],
+//     data() {
 
-}
+//     return {
+//       designation: "",
+//       price: "",
+//       description: "",
+//       product: [],
+
+// }
     
     
-  },
-  mounted() {
-    const id = this.id;
-    UserService.getProductBySlug(id).then(
-      (response) => {
-        this.product = response.data;
-    },
-      (error) => {
-        this.product =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
-  },
+//   },
+  // mounted() {
+  //   const id = this.id;
+  //   UserService.getProductBySlug(id).then(
+  //     (response) => {
+  //       this.product = response.data;
+  //   },
+  //     (error) => {
+  //       this.product =
+  //         (error.response &&
+  //           error.response.data &&
+  //           error.response.data.message) ||
+  //         error.message ||
+  //         error.toString();
+  //     }
+  //   );
+  // },
  
 
-}
+// }
 </script>
 
 <style scoped src="./ProductDetail.css">
