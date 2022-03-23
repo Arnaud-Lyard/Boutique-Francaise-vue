@@ -27,8 +27,7 @@
     <div v-if="currentUser">
         <SidebarLink to="/deconnexion" @click.prevent="logOut" icon="arrow-right-from-bracket">Déconnexion</SidebarLink>
     </div>
-        <SidebarLink to="/cart" icon="shopping-cart">Panier</SidebarLink>
-        <span>{{cartQuantity}}</span>
+        <SidebarLink to="/cart" icon="shopping-cart"><span>{{cartQuantity}}</span></SidebarLink>
   </div>
 </template>
 
