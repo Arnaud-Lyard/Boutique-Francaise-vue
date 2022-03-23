@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <div class="cart-item__details">
-      <p class="is-inline">{{cartItem.title}}</p>
+      <p class="is-inline">{{cartItem.product}}</p>
       <div>
         <span class="cart-item--price has-text-info has-text-weight-bold">
           ${{cartItem.price}} X {{cartItem.quantity}}

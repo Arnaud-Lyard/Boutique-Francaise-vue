@@ -42,6 +42,7 @@ class SecurityController extends AbstractController
 
         } else {
 
+            //Récupéer le token à envoyer à VueJS
             return new Response('Success : You are connected', Response::HTTP_OK);
 
         }

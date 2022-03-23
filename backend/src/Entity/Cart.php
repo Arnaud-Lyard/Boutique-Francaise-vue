@@ -16,6 +16,7 @@ class Cart
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"cart"})
      */
     private $id;
 
