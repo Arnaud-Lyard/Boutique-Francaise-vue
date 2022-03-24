@@ -1,34 +1,27 @@
 <template>
   <div id="cart">
-    <div class="cart--header has-text-centered">
-      <i class="fa fa-2x fa-shopping-cart"></i>
+    <div class="cart-title">
+    <h1>Votre panier</h1>
     </div>
-    <p v-if="!cartItems.length" class="cart-empty-text has-text-centered">
-      Add some items to the cart!
+    <p v-if="!cartItems.length" class="cart-empty">
+      Ajouter des produits au panier !
     </p>
     <ul>
       <li class="cart-item" v-for="cartItem in cartItems" :key="cartItem.id">
           <CartDetail :cartItem="cartItem"/>
       </li>
-      <div class="notification is-success">
-        <button class="delete"></button>
-        <p>
-          Total Quantity:
-          <span class="has-text-weight-bold">{{ cartQuantity }}</span>
-        </p>
+      <div v-if="cartItems.length" class="cart-total">
+          Quantité totale :
+          <span class="cart-total-quantity">{{ cartQuantity }}</span>
       </div>
-      <br>
     </ul>
     <div class="buttons">
-    <button :disabled="!cartItems.length" class="button is-info">
-      Checkout (<span class="has-text-weight-bold">${{ cartTotal }}</span>)
+    <button :disabled="!cartItems.length" class="button-valid">
+      Valider (<span class="cart-text-valid">${{ cartTotal }}</span>)
     </button>
      
- <button class="button is-danger is-outlined" @click="removeAllCartItems">
-    <span>Delete All items</span>
-    <span class="icon is-small">
-      <i class="fas fa-times"></i>
-    </span>
+ <button class="button-delete" @click="removeAllCartItems">
+    <span>Supprimer le panier</span>
   </button>
        </div>
   </div>
@@ -52,3 +45,7 @@ export default {
   }
 };
 </script>
+
+<style scoped src="./Cart.css">
+
+</style>

@@ -4,7 +4,7 @@
       <p class="is-inline">{{cartItem.product}}</p>
       <div>
         <span class="cart-item--price has-text-info has-text-weight-bold">
-          ${{cartItem.price}} X {{cartItem.quantity}}
+          {{cartItem.price / 100}} € X {{cartItem.quantity}}
         </span>
         
         <span>
@@ -29,3 +29,7 @@ export default {
   }
 }
 </script>
+
+<style scoped src="./CartDetail.css">
+
+</style>
