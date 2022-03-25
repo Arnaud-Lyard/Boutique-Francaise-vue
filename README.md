@@ -13,14 +13,14 @@ Télécharger le dépôt Git pour initialiser le projet
 
 ### Installation
 
-#### Backend
+##### Backend
 Créer une base de données et modifier le fichier .env dans pour qu'il pointe vers la base de données.
 Lancer la commande ``composer install`` pour installer Symfony et les dépendances.
 
-GENERER LES CLES SSH
+##### Générer les clés SSH
 Suivre les parties 1,2 et 3 du tutorial pour générer une paire de clé SSH pour que l'utilisateur puisse se connecter à l'aide d'un token https://digitalfortress.tech/php/jwt-authentication-with-symfony/
 
-Autoriser les CORS
+##### Autoriser les CORS
 Modifier le fichier .env pour autoriser les requêtes de l'API pour une utilisation en ligne
 
 #### Frontend
