@@ -22,11 +22,6 @@ const mutations = {
         commit('UPDATE_CART_ITEMS', response.data)
       });
     },
-    removeCartItem ({ commit }, cartItem) {
-      axios.delete(API_URL + 'api/cart/delete', cartItem).then((response) => {
-        commit('UPDATE_CART_ITEMS', response.data)
-      });
-    },
     removeAllCartItems ({ commit }) {
       axios.delete(API_URL + 'api/cart/delete/all').then((response) => {
         commit('UPDATE_CART_ITEMS', response.data)

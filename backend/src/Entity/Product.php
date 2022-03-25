@@ -69,10 +69,6 @@ class Product
      */
     private $isBest;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="product")
-     */
-    private $comments;
 
     public function __construct()
     {

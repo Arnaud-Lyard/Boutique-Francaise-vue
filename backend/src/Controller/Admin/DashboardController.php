@@ -28,7 +28,7 @@ class DashboardController extends AbstractDashboardController
         // redirect to some CRUD controller
         $routeBuilder = $this->get(AdminUrlGenerator::class);
 
-        return $this->redirect($routeBuilder->setController(OrderCrudController::class)->generateUrl());
+        return $this->redirect($routeBuilder->setController(ProductCrudController::class)->generateUrl());
 
     }
 
@@ -42,13 +42,9 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Utilisateur', 'fas fa-user', User::class);
-        yield MenuItem::linkToCrud('Commandes', 'fas fa-shopping-cart', Order::class);
         yield MenuItem::linkToCrud('Categories produits', 'fas fa-list', Category::class);
         yield MenuItem::linkToCrud('Liste des produits', 'fas fa-tag', Product::class);
-        yield MenuItem::linkToCrud('Transporteurs', 'fas fa-truck', Carrier::class);
-        yield MenuItem::linkToCrud('Carroussel', 'fas fa-desktop', Header::class);
         yield MenuItem::linkToCrud('Articles', 'fas fa-pen', Article::class);
         yield MenuItem::linkToCrud('Categories articles', 'fas fa-list', CategoryArticle::class);
-        yield MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Comment::class);
     }
 }
