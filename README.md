@@ -1,6 +1,6 @@
 # Boutique en ligne API
 
-Réalisation d'une boutique en ligne en utilisant Symfony comme API et Vue.js en partie front.
+Réalisation d'une boutique en ligne avec panier dynamique.
 
 ## Pour commencer
 
@@ -13,46 +13,45 @@ Télécharger le dépôt Git pour initialiser le projet
 
 ### Installation
 
-Aller dans la partie backend du projet et lancer la commande ``composer install`` pour installer Symfony.
+# Backend
+Créer une base de données et modifier le fichier .env dans pour qu'il pointe vers la base de données.
+Lancer la commande ``composer install`` pour installer Symfony et les dépendances.
 
+GENERER LES CLES SSH
+Suivre les parties 1,2 et 3 du tutorial pour générer une paire de clé SSH pour que l'utilisateur puisse se connecter à l'aide d'un token https://digitalfortress.tech/php/jwt-authentication-with-symfony/
 
+Autoriser les CORS
+Modifier le fichier .env pour autoriser les requêtes de l'API pour une utilisation en ligne
 
+# Frontend
+Modifier les routes de l'API pour une utilisation en ligne
 
+Lancer la commande ``npm install`` pour installer les modules.
 
-Ensuite vous pouvez montrer ce que vous obtenez au final...
+### Démarrage
 
-## Démarrage
+# Backend
+Lancer la commande ``symfony serve`` pour lancer Symfony.
+# Frontend
+Lancer la commande ``npm run serve`` pour lancer Vue.js.
 
-Dites comment faire pour lancer votre projet
+### Technologies utilisées
 
-## Fabriqué avec
+Symfony version 5
+Vue.js version 3
 
-Entrez les programmes/logiciels/ressources que vous avez utilisé pour développer votre projet
+### Aides à la réalisation du projet
 
-_exemples :_
-* [Materialize.css](http://materializecss.com) - Framework CSS (front-end)
-* [Atom](https://atom.io/) - Editeur de textes
+Symfony
+https://www.udemy.com/share/103IE83@dckHmZC-NAG2NYV9JcHkOZNbXlsf42hjOXsvT16Cg-vksrKCwvuojI23fRrkLf5QHw==/## Versions
 
-## Contributing
+Panier
+https://www.digitalocean.com/community/tutorials/how-to-build-a-shopping-cart-with-vue-3-and-vuex
 
-Si vous souhaitez contribuer, lisez le fichier [CONTRIBUTING.md](https://example.org) pour savoir comment le faire.
+Token
+https://digitalfortress.tech/php/jwt-authentication-with-symfony/
 
-## Versions
-Listez les versions ici 
-_exemple :_
-**Dernière version stable :** 5.0
-**Dernière version :** 5.1
-Liste des versions : [Cliquer pour afficher](https://github.com/your/project-name/tags)
-_(pour le lien mettez simplement l'URL de votre projets suivi de ``/tags``)_
+Authentification
+https://www.bezkoder.com/vue-3-authentication-jwt/
 
-## Auteurs
-Listez le(s) auteur(s) du projet ici !
-* **Jhon doe** _alias_ [@outout14](https://github.com/outout14)
-
-Lisez la liste des [contributeurs](https://github.com/your/project/contributors) pour voir qui à aidé au projet !
-
-_(pour le lien mettez simplement l'URL de votre projet suivi de ``/contirubors``)_
-
-## License
-
-Ce projet est sous licence ``exemple: WTFTPL`` - voir le fichier [LICENSE.md](LICENSE.md) pour plus d'informations
+Et les documentations des technologies utilisées.
