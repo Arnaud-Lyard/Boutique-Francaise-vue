@@ -17,7 +17,6 @@
 
 <script>
 
-// import UserService from "../../services/user.service";
 import {mapActions} from 'vuex'
 
 
@@ -29,41 +28,6 @@ export default {
   },
 };
 
-// export default {
-
-//     name:"ProductDetail",
-//     props: ["id"],
-//     data() {
-
-//     return {
-//       designation: "",
-//       price: "",
-//       description: "",
-//       product: [],
-
-// }
-    
-    
-//   },
-  // mounted() {
-  //   const id = this.id;
-  //   UserService.getProductBySlug(id).then(
-  //     (response) => {
-  //       this.product = response.data;
-  //   },
-  //     (error) => {
-  //       this.product =
-  //         (error.response &&
-  //           error.response.data &&
-  //           error.response.data.message) ||
-  //         error.message ||
-  //         error.toString();
-  //     }
-  //   );
-  // },
- 
-
-// }
 </script>
 
 <style scoped src="./ProductDetail.css">

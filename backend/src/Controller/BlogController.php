@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Article;
 use App\Repository\ArticleRepository;
 Use App\Repository\CategoryArticleRepository;
-use App\Entity\CategoryArticle;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +13,6 @@ use Symfony\Component\Serializer\SerializerInterface;
 class BlogController extends AbstractController
 {
     private $repoArticle;
-    private $repoCategory;
 
     public function __construct(ArticleRepository $repoArticle, CategoryArticleRepository $repoCategory  )
     {
@@ -26,7 +23,7 @@ class BlogController extends AbstractController
     /**
      * @Route("/api/actualites", name="blog", methods={"GET","HEAD"})
      */
-public function index(SerializerInterface $serializer, Request $request): Response
+    public function index(SerializerInterface $serializer, Request $request): Response
     {
         $articles = $this->repoArticle->findAll();
 
@@ -52,38 +49,5 @@ public function index(SerializerInterface $serializer, Request $request): Respon
 
         return $response;
 
-    }
-
-    /**
-     * @Route("/actualite/{id}", name="show")
-     */
-    public function show(Article $article): Response
-    {
-        if (!$article) {
-            return $this->redirectToRoute('blog');
-        }
-        // dd($article);
-        return $this->render("blog/show.html.twig", [
-            'article' => $article,
-        ]);
-    }
-
-    /**
-     * @Route("/details_categorie/{id}", name="categoryDetails")
-     */
-    public function showArticle(?CategoryArticle $category): Response
-    {
-        $categories = $this->repoCategory->findAll();
-
-        if ($category) {            
-            $articles = $category->getArticles()->getValues();
-        } else {
-            return $this->redirectToRoute('blog');
-        };      
-            // dd($articles);    
-            return $this->render("blog/index.html.twig", [
-                'articles' => $articles,
-                'categories' => $categories,
-            ]);
     }
 }

@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use App\Classe\Search;
 use App\Entity\Product;
 use App\Entity\User;
 use App\Entity\Comment;
-use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,8 +48,6 @@ class ProductController extends AbstractController
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
-
-
 
         return $response;
 

@@ -1,8 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import HomePage from "../views/HomePage.vue";
 import BlogPage from "../views/BlogPage.vue";
-import ShopPage from "../views/ShopPage.vue";
-import ProductDetail from "../components/ProductDetail/ProductDetail";
 import ContactPage from "../views/ContactPage";
 import LoginPage from "../views/LoginPage";
 import RegisterPage from "../views/RegisterPage"
@@ -15,13 +13,17 @@ const routes = [
   {
     path: '/cart',
     component: Cart,
+    meta: {
+      title: "Panier - La boutique Warhammer",
+    },
+
   },
   {
-    path: "/home",
+    path: "/",
     name: "HomePage",
     component: HomePage,
     meta: {
-      title: "Accueil - La boutique française",
+      title: "La boutique Warhammer - Accueil",
     },
   },
   {
@@ -29,15 +31,7 @@ const routes = [
     name: "BlogPage",
     component: BlogPage,
     meta: {
-      title: "Actualités - La boutique française",
-    },
-  },
-  {
-    path: "/boutique",
-    name: "ShopPage",
-    component: ShopPage,
-    meta: {
-      title: "Boutique - La boutique française",
+      title: "Actualités - La boutique Warhammer",
     },
   },
   {
@@ -45,7 +39,7 @@ const routes = [
     name: "LoginPage",
     component: LoginPage,
     meta: {
-      title: "Connexion - La boutique française",
+      title: "Connexion - La boutique Warhammer",
     },
   },
   {
@@ -53,25 +47,15 @@ const routes = [
     name: "RegisterPage",
     component: RegisterPage,
     meta: {
-      title: "Inscription - La boutique française",
+      title: "Inscription - La boutique Warhammer",
     },
   },
-  {
-    path: "/produit/:id",
-    name: "ProductDetail",
-    component: ProductDetail,
-    meta: {
-      title: "Détails du produit - La boutique française",
-    },
-    props: true,
-  },
-
   {
     path: "/contact",
     name: "ContactPage",
     component: ContactPage,
     meta: {
-      title: "Contact  - La boutique française",
+      title: "Contact  - La boutique Warhammer",
     },
     // lazy-loaded
     component: contact,
