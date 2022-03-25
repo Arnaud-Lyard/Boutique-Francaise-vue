@@ -17,7 +17,7 @@
     </ul>
     <div class="buttons">
     <button :disabled="!cartItems.length" class="button-valid">
-      Valider (<span class="cart-text-valid">${{ cartTotal }}</span>)
+      Valider (<span class="cart-text-valid">{{ cartTotal / 100 }} €</span>)
     </button>
      
  <button class="button-delete" @click="removeAllCartItems">

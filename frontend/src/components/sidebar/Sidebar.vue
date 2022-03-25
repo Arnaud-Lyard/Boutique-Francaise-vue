@@ -12,14 +12,11 @@
       <span v-if="collapsed">
         <img class="logo" src="../../assets/logo.png" alt="">
       </span>
-      <span v-else>Boutique Française</span>
+      <span v-else>Boutique Warhammer</span>
     </h1>
-    <SidebarLink to="/home" icon="house">Accueil</SidebarLink>
-    <SidebarLink to="/contact" icon="pen">Contact</SidebarLink>
-    <SidebarLink to="/dashboard" icon="user">Dashboard</SidebarLink>
-    <SidebarLink to="/analytics" icon="user">Analytics</SidebarLink>
-    <SidebarLink to="/boutique" icon="shop">Boutique</SidebarLink>
+    <SidebarLink to="/" icon="house">Boutique</SidebarLink>
     <SidebarLink to="/actualites" icon="book-open">Actualités</SidebarLink>
+    <SidebarLink to="/contact" icon="pen">Contact</SidebarLink>
     <div v-if="!currentUser">
         <SidebarLink to="/connexion" icon="arrow-right-to-bracket">Connexion</SidebarLink>
         <SidebarLink to="/inscription" icon="user">Inscription</SidebarLink>

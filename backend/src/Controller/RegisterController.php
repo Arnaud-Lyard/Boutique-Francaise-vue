@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Classe\Mail;
-use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,10 +40,6 @@ class RegisterController extends AbstractController
                 $this->entityManager->flush();
 
                 return new Response('Success : Email have been created', Response::HTTP_CREATED);
-
-                // $mail = new Mail();
-                // $content = "Bonjour ".$user->getFirstname()."<br/>Bienvenue sur la première boutique dédiée au made in France.<br/><br/>";
-                // $mail->send($user->getEmail(), $user->getFirstname(), 'Bienvenue sur La Boutique Française', $content);
     
             } else {
                 return new Response('Error : Email is already used', Response::HTTP_BAD_REQUEST);
