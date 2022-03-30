@@ -14,14 +14,14 @@ Télécharger le dépôt Git pour initialiser le projet
 ### Installation
 
 #### Backend
-Créer une base de données et modifier le fichier .env dans pour qu'il pointe vers la base de données.
+Créer une base de données et modifier le fichier .env pour qu'il pointe vers la base de données.
 Lancer la commande ``composer install`` pour installer Symfony et les dépendances.
 
 ##### Générer les clés SSH
 
 ###### Installation de LexikJWTAuthenticationBundle
 
-For Symfony 2.x – Symfony 3.3 : 
+Pour Symfony 2.x – Symfony 3.3 : 
 ```php
 // Register bundle into app/AppKernel.php:
 public function registerBundles()
