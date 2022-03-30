@@ -1,6 +1,6 @@
 # Boutique en ligne API
 
-Réalisation d'une boutique en ligne avec panier dynamique.
+Projet de boutique en ligne en séparant la partie backend et la partie frontend. Utilisation de Symfony comme une API et récupération des données côté Vue.js.
 
 ## Pour commencer
 
