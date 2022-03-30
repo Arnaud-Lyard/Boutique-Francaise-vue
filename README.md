@@ -86,6 +86,11 @@ lexik_jwt_authentication:
 
 ##### Autoriser les CORS
 Modifier le fichier .env pour autoriser les requêtes de l'API pour une utilisation en ligne
+```bash
+###> nelmio/cors-bundle ###
+CORS_ALLOW_ORIGIN='^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
+###< nelmio/cors-bundle ###
+```
 
 #### Frontend
 Modifier les routes de l'API pour une utilisation en ligne
@@ -106,16 +111,10 @@ Vue.js version 3
 
 ### Aides à la réalisation du projet
 
-Symfony
-https://www.udemy.com/share/103IE83@dckHmZC-NAG2NYV9JcHkOZNbXlsf42hjOXsvT16Cg-vksrKCwvuojI23fRrkLf5QHw==/## Versions
+[Symfony](https://www.udemy.com/course/apprendre-symfony-par-la-creation-dun-site-ecommerce/)
+[Panier](https://www.digitalocean.com/community/tutorials/how-to-build-a-shopping-cart-with-vue-3-and-vuex)
+[Token](https://digitalfortress.tech/php/jwt-authentication-with-symfony/)
+[Authentification](https://www.bezkoder.com/vue-3-authentication-jwt/)
 
-Panier
-https://www.digitalocean.com/community/tutorials/how-to-build-a-shopping-cart-with-vue-3-and-vuex
-
-Token
-https://digitalfortress.tech/php/jwt-authentication-with-symfony/
-
-Authentification
-https://www.bezkoder.com/vue-3-authentication-jwt/
 
 Et les documentations des technologies utilisées.
