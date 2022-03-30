@@ -18,7 +18,20 @@ Créer une base de données et modifier le fichier .env dans pour qu'il pointe v
 Lancer la commande ``composer install`` pour installer Symfony et les dépendances.
 
 ##### Générer les clés SSH
-Suivre les parties 1,2 et 3 du tutorial pour générer une paire de clé SSH pour que l'utilisateur puisse se connecter à l'aide d'un token https://digitalfortress.tech/php/jwt-authentication-with-symfony/
+
+###### Installation de LexikJWTAuthenticationBundle
+
+For Symfony 2.x – Symfony 3.3 : 
+```php
+// Register bundle into app/AppKernel.php:
+public function registerBundles()
+{
+    return array(
+        // ...
+        new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
+    );
+}
+```
 
 ##### Autoriser les CORS
 Modifier le fichier .env pour autoriser les requêtes de l'API pour une utilisation en ligne
