@@ -59,7 +59,7 @@ La clé privée (private.pem) et la clé publique (public.pem) devraient être g
 
 ###### Configurer les clés privées et publiques JWT
 
-Récupérer la clé publique et privée en format base 64.
+###### Récupérer la clé publique et privée en format base 64.
 On obtient maintenant les clés publiques et privées en base64 en exécutant la commande suivante dans le terminal.
 ```bash
 # Prints the private/public keys in base64 format
@@ -67,13 +67,13 @@ cat config/jwt/private.pem | base64 | tr -d '\n'        // S09obkNhWjZnaDUVTRFWQ
 cat config/jwt/public.pem | base64 | tr -d '\n'         // FQTRRRUdMVTRFWQ4R0J4MkJtS09obkNhW....
 ```
 
-Mise à jour du fichier .env
+###### Mise à jour du fichier .env
 Copier la clé publique et privée encodée en base 64 obtenue auparavant et mettre à jour les valeurs de JWT_SECRET_KEY et JWT_PUBLIC_KEY dans le fichier .env.
 Mettre à jour également JWT_PASSPHRASE avec la même passphrase renseignée auparavent lors de la génération des clés.
 
 Une fois cela fait, le répertoire config/jwt/* peut être supprimé, nous n'en avons plus besoin. Si vous voulez le garder, souvenez vous de ne pas l'envoyer sur GIT.
 
-Mise à jour de lexik_jwt_authentication config
+###### Mise à jour de lexik_jwt_authentication config
 Pour Symfony 3.4, Symfony 4.x, et au dessus, un fichier de configuration est généré automatiquement dans config/packages/lexik_jwt_authentication.yaml. Pour les versions 3.3 et inférieures, ajouter le code suivant dans security.yaml
 ```php
 ### config/packages/lexik_jwt_authentication.yaml file ###
