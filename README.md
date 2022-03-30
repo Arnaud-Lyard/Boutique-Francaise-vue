@@ -22,7 +22,7 @@ Lancer la commande ``composer install`` pour installer Symfony et les dépendanc
 ###### Installation de LexikJWTAuthenticationBundle
 
 For Symfony 2.x – Symfony 3.3 : 
-```php
+```symfony
 // Register bundle into app/AppKernel.php:
 public function registerBundles()
 {
