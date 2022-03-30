@@ -15,6 +15,9 @@ Télécharger le dépôt Git pour initialiser le projet
 
 #### Backend
 Créer une base de données et modifier le fichier .env pour qu'il pointe vers la base de données.
+```bash
+DATABASE_URL=mysql://root@127.0.0.1:3306/nom_de_la_base_de_donnees
+```
 Lancer la commande ``composer install`` pour installer Symfony et les dépendances.
 
 ##### Générer les clés SSH
