@@ -37,7 +37,7 @@ Pour Symfony 3.4, Symfony 4.x, et au dessus, l'installation du bundle va être a
 ####### Générer la clé privée et la clé publique
 
 Créer un répertoire temporaire config/jwt pour sotkcer la clé privée et la clé publique. Executer la commande sui vante dans le terminal :
-```bash
+```linux
 # create a folder
 $ mkdir -p config/jwt # For Symfony3+, no need of the -p option
  
