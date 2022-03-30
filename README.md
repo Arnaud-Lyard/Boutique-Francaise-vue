@@ -105,8 +105,11 @@ Lancer la commande ``npm install`` pour installer les modules.
 
 #### Backend
 Lancer la commande ``symfony serve`` pour lancer Symfony.
+Accès à la partie backend de l'application en local : http://127.0.0.1:8000
+
 #### Frontend
 Lancer la commande ``npm run serve`` pour lancer Vue.js.
+Accès à la partie frontend de l'application en local : http://127.0.0.1:8080
 
 ### Technologies utilisées
 
