@@ -19,6 +19,7 @@ Créer une base de données et modifier le fichier .env pour qu'il pointe vers l
 DATABASE_URL=mysql://root@127.0.0.1:3306/nom_de_la_base_de_donnees
 ```
 Lancer la commande ``composer install`` pour installer Symfony et les dépendances.
+Ensuite, lancer la commande ``symfony console doctrine:migration:migrate`` pour créer la base de données.
 
 ##### Générer les clés SSH
 
