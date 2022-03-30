@@ -22,7 +22,7 @@ Lancer la commande ``composer install`` pour installer Symfony et les dépendanc
 ###### Installation de LexikJWTAuthenticationBundle
 
 For Symfony 2.x – Symfony 3.3 : 
-```symfony
+```php
 // Register bundle into app/AppKernel.php:
 public function registerBundles()
 {
@@ -31,6 +31,19 @@ public function registerBundles()
         new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
     );
 }
+```
+Pour Symfony 3.4, Symfony 4.x, et au dessus, l'installation du bundle va être automatique, pas besoin d'intervention manuelle.
+
+####### Générer la clé privée et la clé publique
+
+Créer un répertoire temporaire config/jwt pour sotkcer la clé privée et la clé publique. Executer la commande sui vante dans le terminal :
+```bash
+# create a folder
+$ mkdir -p config/jwt # For Symfony3+, no need of the -p option
+ 
+# generate the private key and store it in temporary folder
+# Provide a strong passphrase when asked and note it.
+$ openssl genrsa -out config/jwt/private.pem -aes256 4096
 ```
 
 ##### Autoriser les CORS
