@@ -1,33 +1,29 @@
-# Boutique en ligne API
+# Online Store API
+An online store project separating the backend and frontend parts. Using Symfony as an API and retrieving data on the Vue.js side.
 
-Projet de boutique en ligne en séparant la partie backend et la partie frontend. Utilisation de Symfony comme une API et récupération des données côté Vue.js.
+## Getting Started
+Download the Git repository to initialize the project.
 
-## Pour commencer
-
-Télécharger le dépôt Git pour initialiser le projet
-
-### Pré-requis
-
+## Prerequisites
 - Node.js
 - Composer
 
-### Installation
-
-#### Backend
-Créer une base de données et modifier le fichier .env pour qu'il pointe vers la base de données.
-```bash
-DATABASE_URL=mysql://root@127.0.0.1:3306/nom_de_la_base_de_donnees
+## Installation
+### Backend
+Create a database and modify the .env file to point to the database:
 ```
-Lancer la commande ``composer install`` pour installer Symfony et les dépendances.
-Ensuite, lancer la commande ``symfony console doctrine:migration:migrate`` pour créer la base de données.
+DATABASE_URL=mysql://root@127.0.0.1:3306/database_name
+```
 
-##### Générer les clés SSH
+Run the command `composer install` to install Symfony and its dependencies. Then, run the command symfony console `doctrine:migration:migrate` to create the database.
 
-###### Installation de LexikJWTAuthenticationBundle
+#### Generate SSH Keys
+Installing LexikJWTAuthenticationBundle
 
-Pour Symfony 2.x – Symfony 3.3 : 
-```php
-// Register bundle into app/AppKernel.php:
+For Symfony 2.x – Symfony 3.3:
+
+```
+// Register bundle in app/AppKernel.php:
 public function registerBundles()
 {
     return array(
@@ -36,51 +32,46 @@ public function registerBundles()
     );
 }
 ```
-Pour Symfony 3.4, Symfony 4.x, et au dessus, l'installation du bundle va être automatique, pas besoin d'intervention manuelle.
+For Symfony 3.4, Symfony 4.x, and above, the bundle is automatically installed, so no manual intervention is needed.
 
-###### Générer la clé privée et la clé publique
-
-Créer un répertoire temporaire config/jwt pour sotkcer la clé privée et la clé publique. Executer la commande sui vante dans le terminal :
-```bash
+#### Generate Private and Public Keys
+Create a temporary config/jwt directory to store the private and public keys. Run the following command in the terminal:
+```
 # create a folder
-$ mkdir -p config/jwt # For Symfony3+, no need of the -p option
+$ mkdir -p config/jwt # For Symfony 3+, no need for the -p option
  
-# generate the private key and store it in temporary folder
+# generate the private key and store it in the temporary folder
 # Provide a strong passphrase when asked and note it.
 $ openssl genrsa -out config/jwt/private.pem -aes256 4096
 ```
 
-Lors de la génération de la clé privée, il faudra remplir une passphrase. Saisir une passphrase et la noter car nous en auron besoin plus tard pour la configuration.
-
-```bash
+While generating the private key, you will need to enter a passphrase. Make sure to note this passphrase, as it will be needed later for configuration.
+```
 # generate the public key using the private key
 $ openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem
- 
-# You will be asked to verify the passphrase you provided earlier. 
 ```
 
-La clé privée (private.pem) et la clé publique (public.pem) devraient être générées dans le dossier config/jwt.
+You will be asked to verify the passphrase you provided earlier.
+The private key (private.pem) and public key (public.pem) should now be generated in the config/jwt folder.
 
-###### Configurer les clés privées et publiques JWT
-
-###### Récupérer la clé publique et privée en format base 64.
-On obtient maintenant les clés publiques et privées en base64 en exécutant la commande suivante dans le terminal.
-```bash
+Configure JWT Private and Public Keys
+Retrieve the private and public keys in base64 format. You can do this by running the following commands in the terminal:
+```
 # Prints the private/public keys in base64 format
-cat config/jwt/private.pem | base64 | tr -d '\n'        // S09obkNhWjZnaDUVTRFWQ4R0J4MkJMQUtLR0lZNEsxdEQxc....
-cat config/jwt/public.pem | base64 | tr -d '\n'         // FQTRRRUdMVTRFWQ4R0J4MkJtS09obkNhW....
+cat config/jwt/private.pem | base64 | tr -d '\n'        // Example output: S09obkNhWjZnaDUVTRFWQ4R0J4MkJMQUtLR0lZNEsxdEQxc....
+cat config/jwt/public.pem | base64 | tr -d '\n'         // Example output: FQTRRRUdMVTRFWQ4R0J4MkJtS09obkNhW....
 ```
 
-###### Mise à jour du fichier .env
-Copier la clé publique et privée encodée en base 64 obtenue auparavant et mettre à jour les valeurs de JWT_SECRET_KEY et JWT_PUBLIC_KEY dans le fichier .env.
-Mettre à jour également JWT_PASSPHRASE avec la même passphrase renseignée auparavent lors de la génération des clés.
+#### Update the .env File
+Copy the base64-encoded private and public keys obtained earlier and update the values for JWT_SECRET_KEY and JWT_PUBLIC_KEY in the .env file. Also, update JWT_PASSPHRASE with the same passphrase you used earlier during key generation.
 
-Une fois cela fait, le répertoire config/jwt/* peut être supprimé, nous n'en avons plus besoin. Si vous voulez le garder, souvenez vous de ne pas l'envoyer sur GIT.
+Once done, the config/jwt/* directory can be deleted as it's no longer needed. If you want to keep it, remember not to commit it to GIT.
 
-###### Mise à jour de lexik_jwt_authentication config
-Pour Symfony 3.4, Symfony 4.x, et au dessus, un fichier de configuration est généré automatiquement dans config/packages/lexik_jwt_authentication.yaml. Pour les versions 3.3 et inférieures, ajouter le code suivant dans security.yaml
-```php
-### config/packages/lexik_jwt_authentication.yaml file ###
+Update lexik_jwt_authentication Config
+For Symfony 3.4, Symfony 4.x, and above, a configuration file is automatically generated in config/packages/lexik_jwt_authentication.yaml.
+For versions 3.3 and below, add the following to security.yaml:
+
+```
 lexik_jwt_authentication:
     secret_key:       '%env(base64:JWT_SECRET_KEY)%' # required for token creation
     public_key:       '%env(base64:JWT_PUBLIC_KEY)%' # required for token verification
@@ -88,40 +79,29 @@ lexik_jwt_authentication:
     token_ttl:        7200                           # default is 3600 seconds
 ```
 
-##### Autoriser les CORS
-Modifier le fichier .env pour autoriser les requêtes de l'API pour une utilisation en ligne
-```bash
+Enable CORS
+Modify the .env file to allow API requests for online use:
+
+```
 ###> nelmio/cors-bundle ###
 CORS_ALLOW_ORIGIN='^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
 ###< nelmio/cors-bundle ###
 ```
 
-#### Frontend
-Modifier les routes de l'API pour une utilisation en ligne
+### Frontend
+Update the API routes for online use.
 
-Lancer la commande ``npm install`` pour installer les modules.
+Run the command `npm install` to install the necessary modules.
 
-### Démarrage
+## Starting the Application
+### Backend
+Run the command `symfony serve` to launch Symfony.
+Access the backend part of the application locally at: http://127.0.0.1:8000
 
-#### Backend
-Lancer la commande ``symfony serve`` pour lancer Symfony.
-Accès à la partie backend de l'application en local : http://127.0.0.1:8000
+### Frontend
+Run the command `npm run serve` to launch Vue.js.
+Access the frontend part of the application locally at: http://127.0.0.1:8080
 
-#### Frontend
-Lancer la commande ``npm run serve`` pour lancer Vue.js.
-Accès à la partie frontend de l'application en local : http://127.0.0.1:8080
-
-### Technologies utilisées
-
+## Technologies Used
 Symfony version 5
 Vue.js version 3
-
-### Aides à la réalisation du projet
-
-[Symfony](https://www.udemy.com/course/apprendre-symfony-par-la-creation-dun-site-ecommerce/)
-[Panier](https://www.digitalocean.com/community/tutorials/how-to-build-a-shopping-cart-with-vue-3-and-vuex)
-[Token](https://digitalfortress.tech/php/jwt-authentication-with-symfony/)
-[Authentification](https://www.bezkoder.com/vue-3-authentication-jwt/)
-
-
-Et les documentations des technologies utilisées.
